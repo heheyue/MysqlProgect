@@ -12,7 +12,7 @@ class HostInfo(models.Model):
     AddTime=models.DateTimeField(auto_now_add=True)
 #数据库信息表
 class DbInfo(models.Model):
-    ID = models.AutoField()
+    ID = models.AutoField(primary_key=True)
     HostId = models.OneToOneField(HostInfo)
     DbName = models.CharField(max_length=50)
     TableName = models.CharField(max_length=500)
@@ -25,7 +25,7 @@ class ProjeckInfo(models.Model):
     AddTime=models.DateTimeField(auto_now_add=True,unique=True)
 #数据库备份文件路径信息表
 class DbFileInfo(models.Model):
-    ID = models.AutoField()
+    ID = models.AutoField(primary_key=True)
     HostId = models.OneToOneField(HostInfo)
     DbPath = models.CharField(max_length=200)
     TablePath = models.CharField(max_length=200)
