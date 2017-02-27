@@ -1,0 +1,63 @@
+<!--[if IE]>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<![endif]-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎来到我的世界</title>
+    <link rel="stylesheet" type="text/css" href="/static/web/css/index.css" />
+    <script src="/static/web/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/web/js/index.js"></script>
+    <script src="/static/web/js/jquery.cookie.js"></script>
+</head>
+<body>
+    <div>
+        <h1> hello weord </h1>
+    </div>
+    <div>
+        <a id=A_heard href="/web/login">LOGIN</a>
+        <a id=A_heard href="/web/ajax">AJAX</a>
+    </div>
+    <div id="tablemsg" >
+        <p>主机信息</p>
+        <table border="1">
+            <tr>
+                <td>主机名</td>
+                <td>ip地址</td>
+            </tr>
+            {% for item in msg %}
+                <tr>
+                    <td>
+                        {{ item.HostName }}
+                    </td>
+                    <td>
+                        {{ item.IP }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    <p>总条数： {{ count }}</p>
+    <div>
+        <p>
+            每页显示条数：
+        </p>
+        <select  id="valueId" onchange="ChangePage(this)">
+            <option value="3">3</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="100">100</option>
+        </select>
+    </div>
+{#    <a href="/index/1">首页</a>#}
+{#    <a href="/index/1">1</a>#}
+{#    <a href="/index/2">2</a>#}
+{#    <a href="/index/3">3</a>#}
+{#    <br>#}
+    </div>
+    <div>
+    {{ ht }}
+    </div>
+</body>
+</html>

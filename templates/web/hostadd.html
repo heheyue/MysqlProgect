@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主机添加</title>
+    <script src="/static/web/js/hostadd.js"></script>
+</head>
+<body>
+    <div>
+        <form method="post" action="/web/hostadd">
+            <p>主机IP：</p><input id='HostIp' name=HostIp type="text" onblur="CheckIP()">
+            <p>HostName:</p><input id='HostName' name="HostName" type="text" onblur="CheckIP()">
+            <p>描述：</p><input  name="HostDescription" type="text">
+            <input type="button" value="提交">
+        </form>
+
+    </div>
+</body>
+</html>

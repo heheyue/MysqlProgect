@@ -7,6 +7,7 @@ from django.db import models
 class HostInfo(models.Model):
     ID = models.AutoField(primary_key=True)
     HostIp=models.GenericIPAddressField(unique=True)
+    HostName = models.CharField(max_length=100,default=None)
     HostDescription = models.CharField(max_length=500)
     DelBit = models.BooleanField(default=False)
     AddTime=models.DateTimeField(auto_now_add=True)

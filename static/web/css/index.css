@@ -1,0 +1,35 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: aliceblue;
+}
+#A_heard{
+    background-color: chartreuse;
+    margin-left: 10px;
+}
+#fistpage{
+    background-color: aqua;
+    margin-left: 5px;
+}
+#uppage{
+    background-color: aquamarine;
+    margin-left: 5px;
+}
+#at_numpage{
+    background-color: aliceblue;
+    padding: 3px;
+    margin-left:5px;
+}
+#numpage{
+    background-color: antiquewhite;
+    margin-left: 5px;
+}
+#downpage{
+    background-color: aquamarine;
+    margin-left: 5px;
+}
+#endpage{
+    background-color: aqua;
+    margin-left: 5px;
+
+}
