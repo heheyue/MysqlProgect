@@ -1,0 +1,28 @@
+/*input[type='text']{*/
+	/*border: solid 1px #999;*/
+/*}*/
+/*input[type='text'].focus{*/
+	/*border-color: #000 !important;*/
+/*}*/
+/*input[type='text'].invalid{*/
+	/*border-color: red;*/
+/*}*/
+/*input[type='text'].inactive{*/
+	/*color: #999;*/
+	/*font-style: italic;*/
+/*}*/
+/*input[type='text'].required,{*/
+	/*background: url(required-input.png) right 5px no-repeat;*/
+/*}*/
+
+.focus{
+    border-color: #000 !important;
+}
+#HostAddLader.invalid{
+    border-color: red;
+    background-color: antiquewhite;
+}
+.inactive{
+    color: #999;
+    font-style: italic;
+}

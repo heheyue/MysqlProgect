@@ -3,17 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>主机添加</title>
+    <link rel="stylesheet" type="text/css" href="/static/web/css/hostadd.css" />
+    <script src="/static/public/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/public/js/jquery.cookie.js"></script>
+    <script src="/static/public/js/jquery.validVal.js"></script>
+    <script src="/static/public/js/jquery.validVal-customValidations.js"></script>
+
     <script src="/static/web/js/hostadd.js"></script>
 </head>
 <body>
     <div>
-        <form method="post" action="/web/hostadd">
-            <p>主机IP：</p><input id='HostIp' name=HostIp type="text" onblur="CheckIP()">
-            <p>HostName:</p><input id='HostName' name="HostName" type="text" onblur="CheckIP()">
-            <p>描述：</p><input  name="HostDescription" type="text">
-            <input type="button" value="提交">
+        <form id="HostAdd" method="post" action="/web/hostadd">
+            {% csrf_token %}
+            <label>主机Ip</label><br/>
+            <input id="HostAddLader" class="required CheakIp" name=HostIp type="text"><br/>
+            <label>HostName</label><br/>
+            <input id="HostAddLader" class="required" name="HostName" type="text"><br/>
+            <label>描述</label><br/>
+            <input id="HostAddLader" class="required" name="HostDescription" type="text"><br/>
+            <input type="submit" value="提交">
         </form>
-
     </div>
 </body>
 </html>
