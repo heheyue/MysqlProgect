@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据库用户添加</title>
+</head>
+<body>
+    <form id = "DbUserAdd" method="post" content="/web/dbuseradd">
+        <select name="cars">
+            {% for item in IpId %}
+                <option value="{{ item.ID }}">{{ item.HostIp }}</option>
+            {% endfor %}
+        </select>
+    </form>
+</body>
+</html>

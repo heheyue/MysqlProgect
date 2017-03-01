@@ -6,6 +6,7 @@ from django.http import request
 
 from models import HostInfo
 
+from DbUser import DBUSERINFO
 
 from form import HOSTADD
 
@@ -16,9 +17,9 @@ def HostAdd(request):
         HostIp = request.POST.get('HostIp')
         HostName = request.POST.get('HostName')
         HostDescription = request.POST.get('HostDescription')
-        print HostIp
-        print HostName
-        print HostDescription
+        # print HostIp
+        # print HostName
+        # print HostDescription
         if HostName and HostIp and HostDescription:
             HostAddCheck = HOSTADD(request.POST)
             HostAddCheckBit = HostAddCheck.is_valid()
@@ -38,3 +39,12 @@ def HostAdd(request):
             return render(request,'web/hostadd.html',{'msg':'必填项存在空，请从新填写'})
     else:
         return render(request,'web/hostadd.html')
+
+def DbUserAdd(request):
+    DbUserInfo = DBUSERINFO()
+    IpId = DbUserInfo.SelectHostIp()
+    print IpId
+    if request.method=='POSt':
+        pass
+    else:
+        return render(request,'web/dbuseradd.html',{'IpId':IpId})
