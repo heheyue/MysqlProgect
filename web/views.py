@@ -21,10 +21,19 @@ def HostAdd(request):
         print HostDescription
         if HostName and HostIp and HostDescription:
             HostAddCheck = HOSTADD(request.POST)
-            HostAddCheckRq = HostAddCheck.is_valid()
-
-            HostInfo.objects.create(HostIp=HostIp,HostName=HostName,HostDescription=HostDescription)
-            return HttpResponse('asdjkasj')
+            HostAddCheckBit = HostAddCheck.is_valid()
+            if HostAddCheckBit:
+                try:
+                    HostInfo.objects.create(HostIp=HostIp,HostName=HostName,HostDescription=HostDescription)
+                    return render(request,'web/success.html',{'url':'http://192.168.130.18/web/hostadd'})
+                except Exception,e:
+                    if e[0] == 1062:
+                        return render(request, 'web/hostadd.html', {'msg':'添加失败','error':'IP地址重复'})
+                    else:
+                        return render(request, 'web/hostadd.html', {'msg': '添加失败', 'error': e})
+            else:
+                CheckAddError = HostAddCheck.errors.as_data().values()[0][0].messages[0]
+                return render(request, 'web/hostadd.html', {'msg': CheckAddError})
         else:
             return render(request,'web/hostadd.html',{'msg':'必填项存在空，请从新填写'})
     else:

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>成功</title>#}
+{#    <meta http-equiv="refresh" content="3;url={{ url }}">#}
+{#</head>#}
+{#<body>#}
+{#    成功：3秒钟后跳转{{ url }}#}
+{#</body>#}
+<head>
+<title>跳转</title>
+<script language="javascript" type="text/javascript">
+var i = 5;
+var intervalid;
+intervalid = setInterval("fun()", 1000);
+function fun() {
+if (i == 0) {
+window.location.href = "{{ url }}";
+clearInterval(intervalid);
+}
+document.getElementById("mes").innerHTML = i;
+i--;
+}
+</script>
+    <meta http-equiv="refresh" content="5;url={{ url }}">
+</head>
+<body>
+<h3>添加成功</h3>
+<p>将在"<span id="mes">5</span>"秒后跳转到{{ url }}</p>
+</body>
+</html>

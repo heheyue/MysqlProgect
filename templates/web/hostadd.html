@@ -12,18 +12,20 @@
     <script src="/static/web/js/hostadd.js"></script>
 </head>
 <body>
-    <div>
+    <div id="hostAddDiv">
         <form id="HostAdd" method="post" action="/web/hostadd">
             {% csrf_token %}
-            <label>主机Ip</label><br/>
+            <label>主机Ip*</label><br/>
             <input id="HostAddLader" class="required CheakIp" name=HostIp type="text"><br/>
-            <label>HostName</label><br/>
-            <input id="HostAddLader" class="required" name="HostName" type="text"><br/>
-            <label>描述</label><br/>
-            <input id="HostAddLader" class="required" name="HostDescription" type="text"><br/>
+            <label>主机名</label><br/>
+            <input class="required" name="HostName" type="text"><br/>
+            <label>描述*</label><br/>
+            <textarea id="HostAddLader" class="required" name="HostDescription" rows="10" cols="30"></textarea><br/>
             <input type="submit" value="提交">
         </form>
-        {{ msg }}
+    </div>
+    <div id="HostAddReturnDiv">
+        <p>{{ msg }}{{ error }}</p>
     </div>
 </body>
 </html>
