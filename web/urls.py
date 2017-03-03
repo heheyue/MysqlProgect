@@ -21,4 +21,5 @@ urlpatterns = [
      url(r'^hostadd',HostAdd),
      url(r'^dbuseradd',DbUserAdd),
      url(r'^projectadd',ProjectAdd),
+     url(r'^hostprojectadd',HostProjectAdd),
 ]

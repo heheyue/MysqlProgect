@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>项目主机添加</title>
+    <script src="/static/public/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/public/js/jquery.cookie.js"></script>
+
+    <script src="/static/web/js/hostprojectadd.js"></script>
+</head>
+<body>
+    <div>
+        <form id ="hostprojectadd" method="post" content="/web/hostprojectadd">
+        {% csrf_token %}
+            <label>项目名称</label>
+            <select name="ChoseProject" Ip="ChoseProject" onchange="ChoseProjectByAjax()">
+                <option value="0">请选择</option>
+                {% for item in ProjectIdName %}
+                    <option value="{{ item.ID }}">{{ item.ProgectName }}</option>
+                {% endfor %}
+            </select>
+            <label>选择需要加入的主机</label>
+            <select name="HostId">
+                <option value="0">请选择</option>
+                {% for item in HostIpId %}
+                    <option value="{{ item.ID }}">{{ item.HostIp}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="添加到项目">
+            <div>
+                <p>项目內的主机</p>
+                <p id="HostAll">
+                </p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

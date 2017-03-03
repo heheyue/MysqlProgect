@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.http import request
 
+import json
+
 from models import HostInfo
 
 from DbUser import *
@@ -58,7 +60,8 @@ def ProjectAdd(request):
 
 def DbUserAdd(request):
     DbUserInfo = DBUSERINFO()
-    IpId = DbUserInfo.SelectHostIp()
+    HostInfo = HOSTINFO()
+    IpId = HostInfo.SelectHostAll()
     # print IpId
     if request.method=='POST':
         ChoseIp = int(request.POST.get('ChoseIp'))
@@ -84,4 +87,24 @@ def DbUserAdd(request):
         return render(request,'web/dbuseradd.html',{'IpId':IpId})
 
 def HostProjectAdd(request):
-    return render(request,'')
+    HostInfo = HOSTINFO()
+    ProjectInfo = PROJECTINFO()
+    HostIpId = HostInfo.SelectHostAll()
+    ProjecIdName = ProjectInfo.SelectProjectId()
+    if request.method=='POST':
+        ProjectId = int(request.POST.get('ChoseProject',0))
+        HostId = request.POST.get('HostId')
+        print ProjectId
+        print HostId
+        if HostId:
+            return HttpResponse('add')
+        else:
+            msg = {}
+            msg['1'] = '17.1.1.1'
+            msg['2'] = '17.1.1.2'
+            msg['3'] = '17.1.1.3'
+            msgall ={}
+            msgall["Hostall"]=msg
+            return HttpResponse(json.dumps(msgall))
+    else:
+        return render(request,'web/hostprojectadd.html',{'HostIpId':HostIpId,'ProjectIdName':ProjecIdName})

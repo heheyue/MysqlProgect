@@ -1,6 +1,10 @@
 #_*_coding:utf-8 _*_
 
 from models import *
+class HOSTINFO:
+    def SelectHostAll(self):
+        IpId= HostInfo.objects.all()
+        return IpId
 
 class DBUSERINFO:
     def Add(self,HostId,HostUser,HostPwd):
@@ -13,10 +17,6 @@ class DBUSERINFO:
             msg['TrueBit'] = False
             msg['ErrorMsg'] = e
         return msg
-    def SelectHostIp(self):
-        IpId= HostInfo.objects.all()
-        return IpId
-
     def SelectHostIpByObjeck(self,ObjNum):
         pass
     def SelectHostIpByIp(self,Ip):
@@ -32,3 +32,21 @@ class PROJECTINFO:
             msg['TrueBit'] = False
             msg['ErrorMsg'] = e
         return msg
+    def SelectProjectId(self):
+        SelectProjectId = ProjectInfo.objects.all()
+        return SelectProjectId
+
+class HOSTMSG:
+    def HostMsgAdd(self,HostId,ProjectId):
+        msg = {}
+        try:
+            HostIdAdd = HostInfo.objects.get(ID=HostId)
+            ProjectIdAdd = ProjectInfo.objects.get(ID=ProjectInfo)
+            HostMsg.objects.create(HostId=HostIdAdd,ProjectId=ProjectIdAdd)
+            msg['TrueBit'] = True
+        except Exception,e:
+            msg['TrueBit'] = False
+            msg['ErrorMsg'] = e
+        return msg
+    def SelectFromProjectId(self,ProjectId):
+        pass
