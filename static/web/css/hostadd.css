@@ -15,14 +15,14 @@
 	/*background: url(required-input.png) right 5px no-repeat;*/
 /*}*/
 
-.focus{
+#HostAdd.focus{
     border-color: #000 !important;
 }
-#HostAddLader.invalid{
+#HostAddLaber.invalid {
     border-color: red;
     background-color: antiquewhite;
 }
-.inactive{
+#HostAdd.inactive{
     color: #999;
     font-style: italic;
 }

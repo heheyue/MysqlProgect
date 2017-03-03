@@ -1,0 +1,19 @@
+.focus{
+    border-color: #000 !important;
+}
+#DbUser.invalid{
+    border-color: red;
+    background-color: antiquewhite;
+}
+#HostPwd.invalid{
+    border-color: red;
+    background-color: antiquewhite;
+}
+#HostPwdCopy.invalid{
+    border-color: red;
+    background-color: antiquewhite;
+}
+.inactive{
+    color: #999;
+    font-style: italic;
+}

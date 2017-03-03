@@ -15,20 +15,21 @@ class HostInfo(models.Model):
 #数据库登录信息表
 class DbUserInfo(models.Model):
     ID = models.AutoField(primary_key=True)
-    HostId = models.OneToOneField(HostInfo)
+    HostId = models.ForeignKey(HostInfo)
     HostUser = models.CharField(max_length=20)
     HostPwd = models.CharField(max_length=100)
 #数据库信息表
 class DbInfo(models.Model):
     ID = models.AutoField(primary_key=True)
-    HostId = models.OneToOneField(DbUserInfo)
+    HostId = models.ForeignKey(DbUserInfo)
     DbName = models.CharField(max_length=50)
     TableName = models.CharField(max_length=500)
     UpTime = models.DateTimeField(auto_now=True)
 #项目列表
-class ProjeckInfo(models.Model):
+class ProjectInfo(models.Model):
     ID = models.AutoField(primary_key=True)
-    ProgeckName = models.CharField(max_length=500)
+    ProgectName = models.CharField(max_length=500)
+    ProgectDescription = models.CharField(max_length=500)
     DelBit = models.BooleanField(default=False)
     AddTime=models.DateTimeField(auto_now_add=True,unique=True)
 #数据库备份文件路径信息表
@@ -41,4 +42,4 @@ class DbFileInfo(models.Model):
 class HostMsg(models.Model):
     ID = models.AutoField(primary_key=True)
     HostId = models.OneToOneField(HostInfo)
-    ProjeckId = models.OneToOneField(ProjeckInfo)
+    ProjeckId = models.OneToOneField(ProjectInfo)

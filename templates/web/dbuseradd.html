@@ -3,14 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>数据库用户添加</title>
+    <link rel="stylesheet" type="text/css" href="/static/web/css/dbuseradd.css" />
+    <script src="/static/public/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/public/js/jquery.cookie.js"></script>
+    <script src="/static/public/js/jquery.validVal.js"></script>
+    <script src="/static/public/js/jquery.validVal-customValidations.js"></script>
+
+    <script src="/static/web/js/dbuseradd.js"></script>
 </head>
 <body>
+<div>
     <form id = "DbUserAdd" method="post" content="/web/dbuseradd">
-        <select name="cars">
+    {% csrf_token %}
+        <label>chose*</label><br/>
+        <select name="ChoseIp">
+            <option value="0">请选择</option>
             {% for item in IpId %}
-                <option value="{{ item.ID }}">{{ item.HostIp }}</option>
+                <option calss="requiredgroup:IpIdOption" value="{{ item.ID }}">{{ item.HostIp }}</option>
             {% endfor %}
-        </select>
+        </select><br/>
+        <label>dbuser</label><br/>
+        <input id="DbUser"class="required" name="HostUser" type="text"/><br/>
+        <label>pwd</label><br/>
+        <input id="HostPwd" class="required placeholder" name="HostPwd"type="password"/><br/>
+        <label>next pwd</label><br/>
+        <input id ="HostPwdCopy" class="required placeholder corresponding:HostPwd" type="password"/><br/>
+        <input type="submit" value="up">
     </form>
+
+</div>
+<div>
+    {{ msg }}
+</div>
 </body>
 </html>

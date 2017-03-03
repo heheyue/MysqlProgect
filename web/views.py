@@ -6,7 +6,7 @@ from django.http import request
 
 from models import HostInfo
 
-from DbUser import DBUSERINFO
+from DbUser import *
 
 from form import HOSTADD
 
@@ -40,11 +40,48 @@ def HostAdd(request):
     else:
         return render(request,'web/hostadd.html')
 
+def ProjectAdd(request):
+    if request.method == 'POST':
+        ProjectName = request.POST.get('ProjectName')
+        ProjectDescription = request.POST.get('ProjectDescription')
+        if ProjectDescription and ProjectName:
+            ProjectInfo = PROJECTINFO()
+            Msg = ProjectInfo.ProjectAdd(ProjectName,ProjectDescription)
+            if Msg['TrueBit']:
+                return render(request, 'web/success.html', {'url': 'http://192.168.130.18/web/projectadd'})
+            else:
+                return render(request, 'web/dbuseradd.html', {'msg': Msg['ErrorMsg']})
+        else:
+            return render(request, 'web/progectadd.html',{'msg':'必填项存在空，请从新填写'})
+    else:
+        return render(request,'web/progectadd.html')
+
 def DbUserAdd(request):
     DbUserInfo = DBUSERINFO()
     IpId = DbUserInfo.SelectHostIp()
-    print IpId
-    if request.method=='POSt':
-        pass
+    # print IpId
+    if request.method=='POST':
+        ChoseIp = int(request.POST.get('ChoseIp'))
+        HostUser = request.POST.get('HostUser')
+        HostPwd = request.POST.get('HostPwd')
+        # print ChoseIp
+        # print HostUser
+        # print HostPwd
+        if ChoseIp == 0:
+            return render(request, 'web/dbuseradd.html', {'IpId': IpId, 'msg': '必填项存在空，请从新填写'})
+        else:
+            if ChoseIp and HostUser and HostPwd:
+                msg = DbUserInfo.Add(ChoseIp,HostUser,HostPwd)
+                # print msg['TrueBit']
+                # print msg['ErrorMsg']
+                if msg['TrueBit']:
+                    return render(request, 'web/success.html', {'url': 'http://192.168.130.18/web/dbuseradd'})
+                else:
+                    return render(request, 'web/dbuseradd.html', {'IpId': IpId,'msg':msg['ErrorMsg']})
+            else:
+                return render(request, 'web/dbuseradd.html', {'IpId': IpId,'msg':'必填项存在空，请从新填写'})
     else:
         return render(request,'web/dbuseradd.html',{'IpId':IpId})
+
+def HostProjectAdd(request):
+    return render(request,'')

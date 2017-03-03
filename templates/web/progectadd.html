@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>项目添加</title>
+    <link rel="stylesheet" type="text/css" href="/static/web/css/progectadd.css" />
+    <script src="/static/public/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/public/js/jquery.cookie.js"></script>
+    <script src="/static/public/js/jquery.validVal.js"></script>
+    <script src="/static/public/js/jquery.validVal-customValidations.js"></script>
+
+    <script src="/static/web/js/progectadd.js"></script>
+</head>
+<body>
+    <div>
+        <form id="ProjectAdd" method="post" action="/web/projectadd">
+            {% csrf_token %}
+            <label>项目名称*</label><br/>
+            <input id="ProjectNameLaber" class="required" name="ProjectName" type="text"><br/>
+            <label>描述*</label><br/>
+            <textarea id="ProjectDesciptionLaber" class="required" name="ProjectDescription" rows="10" cols="30"></textarea><br/>
+            <input type="submit" value="提交">
+        </form>
+    </div>
+    <div>
+        {{ msg }}
+    </div>
+</body>
+</html>

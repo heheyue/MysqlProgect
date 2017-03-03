@@ -1,0 +1,15 @@
+.focus{
+    border-color: #000 !important;
+}
+#ProjectNameLaber.invalid{
+    border-color: red;
+    background-color: antiquewhite;
+}
+#ProjectDesciptionLaber.invalid{
+    border-color: red;
+    background-color: antiquewhite;
+}
+.inactive{
+    color: #999;
+    font-style: italic;
+}

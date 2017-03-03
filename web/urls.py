@@ -19,5 +19,6 @@ from web.views import *
 
 urlpatterns = [
      url(r'^hostadd',HostAdd),
-     url(r'^dbuseradd',DbUserAdd)
+     url(r'^dbuseradd',DbUserAdd),
+     url(r'^projectadd',ProjectAdd),
 ]

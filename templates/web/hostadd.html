@@ -16,11 +16,11 @@
         <form id="HostAdd" method="post" action="/web/hostadd">
             {% csrf_token %}
             <label>主机Ip*</label><br/>
-            <input id="HostAddLader" class="required CheakIp" name=HostIp type="text"><br/>
+            <input id="HostAddLaber" class="required CheakIp" name=HostIp type="text"><br/>
             <label>主机名</label><br/>
-            <input class="required" name="HostName" type="text"><br/>
+            <input name="HostName" type="text"><br/>
             <label>描述*</label><br/>
-            <textarea id="HostAddLader" class="required" name="HostDescription" rows="10" cols="30"></textarea><br/>
+            <textarea id="HostAddLaber" class="required" name="HostDescription" rows="10" cols="30"></textarea><br/>
             <input type="submit" value="提交">
         </form>
     </div>
