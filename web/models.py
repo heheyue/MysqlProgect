@@ -42,4 +42,4 @@ class DbFileInfo(models.Model):
 class HostMsg(models.Model):
     ID = models.AutoField(primary_key=True)
     HostId = models.OneToOneField(HostInfo)
-    ProjeckId = models.OneToOneField(ProjectInfo)
+    ProjectId = models.ForeignKey(ProjectInfo)

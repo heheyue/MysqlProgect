@@ -13,7 +13,7 @@
         <form id ="hostprojectadd" method="post" content="/web/hostprojectadd">
         {% csrf_token %}
             <label>项目名称</label>
-            <select name="ChoseProject" Ip="ChoseProject" onchange="ChoseProjectByAjax()">
+            <select id = "ChoseProject" name="ChoseProject" Ip="ChoseProject" onchange="ChoseProjectByAjax()">
                 <option value="0">请选择</option>
                 {% for item in ProjectIdName %}
                     <option value="{{ item.ID }}">{{ item.ProgectName }}</option>
@@ -29,8 +29,11 @@
             <input type="submit" value="添加到项目">
             <div>
                 <p>项目內的主机</p>
-                <p id="HostAll">
-                </p>
+                <table border="1" id ="HostIp">
+                </table>
+            </div>
+            <div id="Msg">
+                {{ msg }}
             </div>
         </form>
     </div>

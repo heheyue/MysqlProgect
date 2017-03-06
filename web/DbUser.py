@@ -41,12 +41,29 @@ class HOSTMSG:
         msg = {}
         try:
             HostIdAdd = HostInfo.objects.get(ID=HostId)
-            ProjectIdAdd = ProjectInfo.objects.get(ID=ProjectInfo)
+            ProjectIdAdd = ProjectInfo.objects.get(ID=ProjectId)
             HostMsg.objects.create(HostId=HostIdAdd,ProjectId=ProjectIdAdd)
             msg['TrueBit'] = True
         except Exception,e:
             msg['TrueBit'] = False
-            msg['ErrorMsg'] = e
+            if int(e[0])==1062:
+                msg['ErrorMsg'] = '添加的IP隶属于其他项目，不能重复添加'
+            else:
+                msg['ErrorMsg'] = e
         return msg
     def SelectFromProjectId(self,ProjectId):
-        pass
+        msg={}
+        HostOne = {}
+        HostIpMag = []
+        try:
+            HostID = HostMsg.objects.filter(ProjectId__ID=ProjectId)
+            for item in HostID:
+                HostOne['Ip'] = item.HostId.HostIp
+                HostOne['HostDescription'] = item.HostId.HostDescription
+                HostIpMag.append(HostOne)
+            msg['TrueBit'] = True
+            msg['HostIp'] = HostIpMag
+        except Exception,e:
+            msg['TrueBit'] = False
+            msg['ErrorMsg']=e
+        return msg

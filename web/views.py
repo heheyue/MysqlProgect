@@ -89,22 +89,29 @@ def DbUserAdd(request):
 def HostProjectAdd(request):
     HostInfo = HOSTINFO()
     ProjectInfo = PROJECTINFO()
+    HostMsg = HOSTMSG()
     HostIpId = HostInfo.SelectHostAll()
     ProjecIdName = ProjectInfo.SelectProjectId()
     if request.method=='POST':
         ProjectId = int(request.POST.get('ChoseProject',0))
-        HostId = request.POST.get('HostId')
+        HostId = int(request.POST.get('HostId',0))
         print ProjectId
         print HostId
-        if HostId:
-            return HttpResponse('add')
+        if (HostId != 0) and (ProjectId != 0):
+            msg = HostMsg.HostMsgAdd(HostId,ProjectId)
+            if msg['TrueBit']:
+                return render(request, 'web/success.html', {'url': 'http://192.168.130.18/web/hostprojectadd'})
+            else:
+                return render(request, 'web/hostprojectadd.html', {'HostIpId': HostIpId, 'ProjectIdName': ProjecIdName,'msg':msg["ErrorMsg"]})
         else:
-            msg = {}
-            msg['1'] = '17.1.1.1'
-            msg['2'] = '17.1.1.2'
-            msg['3'] = '17.1.1.3'
-            msgall ={}
-            msgall["Hostall"]=msg
-            return HttpResponse(json.dumps(msgall))
+            ProjectIdByAjax = request.POST.get('ChoseProjectByAjax')
+            if ProjectIdByAjax:
+                msg = HostMsg.SelectFromProjectId(ProjectIdByAjax)
+                if msg['TrueBit']:
+                    return HttpResponse(json.dumps(msg["HostIp"]))
+                else:
+                    return HttpResponse(json.dumps(msg))
+            else:
+                return render(request, 'web/hostprojectadd.html', {'HostIpId': HostIpId, 'ProjectIdName': ProjecIdName,'msg':'请选择要添加的主机'})
     else:
         return render(request,'web/hostprojectadd.html',{'HostIpId':HostIpId,'ProjectIdName':ProjecIdName})
